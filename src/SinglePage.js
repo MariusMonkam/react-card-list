@@ -1,4 +1,5 @@
 import React from 'react';
+import PageList from './PageList'
 const posts = [
     {
       "header":"header1",
@@ -25,6 +26,7 @@ const SinglePage = ({match})=>{
   //create url-parameter header
   const header = match.params.header
   const post = posts.find(post =>post.header === header)
+  const OtherPost = posts.filter(post => post.header!==header)
   return(
    <div className="container text-center">
           <div className="card border-dark mb-3 " >
@@ -33,7 +35,13 @@ const SinglePage = ({match})=>{
               <h5 className="card-title">{post.cardtitle}</h5>
               <p className="card-text">{post.cardtext}</p>
             </div>
-          </div>    
+          </div>  
+          <h3> Other Posts</h3> 
+          <div className="container">
+          <PageList post={OtherPost}/>
+          </div>
+
+           
       </div>
 
   )
